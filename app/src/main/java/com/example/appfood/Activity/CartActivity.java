@@ -10,12 +10,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.appfood.Adapter.CartAdapter;
+import com.example.appfood.Domain.Hotels;
+import com.example.appfood.Domain.Order;
 import com.example.appfood.Helper.ChangeNumberItemsListener;
 import com.example.appfood.Helper.ManagmentCart;
 import com.example.appfood.R;
 import com.example.appfood.databinding.ActivityCartBinding;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -58,18 +66,43 @@ public class CartActivity extends BaseActivity {
     private void ConfirmOrder() {
         binding.btnConfirmOrder.setOnClickListener(v -> {
             SweetAlertDialog alertDialog = new SweetAlertDialog(CartActivity.this, SweetAlertDialog.SUCCESS_TYPE);
-                alertDialog.setTitleText("Your order successfully !");
-                alertDialog.setConfirmClickListener(sDialog -> {
-                            sDialog.dismissWithAnimation();
-                            managmentCart.clearList();
-                            adapter.notifyItemRangeRemoved(0, managmentCart.getListCart().size());
-                            adapter.notifyDataSetChanged();
-                            Button btn = (Button) alertDialog.findViewById(cn.pedant.SweetAlert.R.id.confirm_button);
-                            btn.setBackgroundColor(ContextCompat.getColor(CartActivity.this,R.color.red));
-                            Intent intent = new Intent(CartActivity.this, MainActivity.class);
-                            startActivity(intent);
-                        })
-                            .show();
+            alertDialog.setTitleText("Your order successfully!");
+            
+            alertDialog.setConfirmClickListener(sDialog -> {
+                Order order = new Order();
+                
+                ManagmentCart managmentCart = new ManagmentCart(CartActivity.this);
+                ArrayList<Hotels> cartList = managmentCart.getListCart();
+                
+                order.setTotalPrice(managmentCart.getTotalFee());
+                order.setDate(new Date());
+                
+                order.setCustomerName(getCustomerName()); 
+                order.setPhone(getCustomerPhone()); 
+                
+                if (!cartList.isEmpty()) {
+                    order.setIdHotel(cartList.get(0).getId());
+                }
+    
+                sendOrderToDatabase(order, new OrderResponseCallback() {
+                    @Override
+                    public void onSuccess() {
+                        sDialog.dismissWithAnimation();
+                        managmentCart.clearList();
+                        adapter.notifyItemRangeRemoved(0, managmentCart.getListCart().size());
+                        adapter.notifyDataSetChanged();
+                        Button btn = (Button) alertDialog.findViewById(cn.pedant.SweetAlert.R.id.confirm_button);
+                        btn.setBackgroundColor(ContextCompat.getColor(CartActivity.this, R.color.red));
+                        Intent intent = new Intent(CartActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+    
+                    @Override
+                    public void onFailure(String errorMessage) {
+                        Toast.makeText(CartActivity.this, "", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }).show();
         });
     }
     private void calculateCart() {
@@ -89,5 +122,44 @@ public class CartActivity extends BaseActivity {
     }
     private void setVariable() {
         binding.btnBackCart.setOnClickListener(v -> finish());
+    }
+
+    private void sendOrderToDatabase(Order order, OrderResponseCallback callback) {
+        // Get a reference to the Firebase Realtime Database
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("orders");
+
+        // Push the new order to the "orders" node
+        String orderId = databaseReference.push().getKey(); // Automatically generate a unique ID for the order
+        if (orderId != null) {
+            // Set the order data
+            databaseReference.child(orderId).setValue(order)
+                    .addOnSuccessListener(aVoid -> {
+                        // Order created successfully
+                        callback.onSuccess();
+                    })
+                    .addOnFailureListener(e -> {
+                        // Failure to create order
+                        callback.onFailure(e.getMessage());
+                    });
+        } else {
+            callback.onFailure("Failed to generate order ID");
+        }
+    }
+    
+    private double calculateTotalPrice() {
+        return 100.0; 
+    }
+    
+    private String getCustomerName() {
+        return "John Doe"; 
+    }
+    
+    private String getCustomerPhone() {
+        return "123-456-7890"; 
+    }
+    
+    public interface OrderResponseCallback {
+        void onSuccess();
+        void onFailure(String errorMessage);
     }
 }

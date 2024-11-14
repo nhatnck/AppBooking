@@ -56,7 +56,7 @@ public class DetailActivity extends BaseActivity {
 
         binding.addBtn.setOnClickListener(v -> {
             object.setNumberInCart(num);
-            managmentCart.insertFood(object);
+            managmentCart.insertHotel(object);
         });
 
     }

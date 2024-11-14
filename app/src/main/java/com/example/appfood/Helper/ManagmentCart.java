@@ -20,7 +20,7 @@ public class ManagmentCart {
         this.tinyDB=new TinyDB(context);
     }
 
-//    public void insertFood(Hotels item) {
+//    public void insertHotel(Hotels item) {
 //        ArrayList<Hotels> listpop = getListCart();
 //        boolean existAlready = false;
 //        int n = 0;
@@ -39,7 +39,7 @@ public class ManagmentCart {
 //        tinyDB.putListObject("CartList",listpop);
 //        Toast.makeText(context, "Added to your Cart", Toast.LENGTH_SHORT).show();
 //    }
-    public void insertFood(Hotels item) {
+    public void insertHotel(Hotels item) {
         ArrayList<Hotels> listCart = getListCart();
         boolean existAlready = false;
 
