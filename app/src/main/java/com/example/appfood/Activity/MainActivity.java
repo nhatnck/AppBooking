@@ -41,7 +41,7 @@ public class MainActivity extends BaseActivity {
         initLocation();
         initTime();
         initPrice();
-        initBestFood();
+        initBestHotel();
         initCategory();
         setVariable();
     }
@@ -65,11 +65,11 @@ public class MainActivity extends BaseActivity {
         binding.btnCart.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CartActivity.class)));
     }
 
-    private void initBestFood() {
+    private void initBestHotel() {
         DatabaseReference myRef = database.getReference("Hotels");
-        binding.progressBarBestFood.setVisibility(View.VISIBLE);
+        binding.progressBarBestHotel.setVisibility(View.VISIBLE);
         ArrayList<Hotels> list = new ArrayList<>();
-        Query query = myRef.orderByChild("BestFood").equalTo(true);
+        Query query = myRef.orderByChild("BestHotel").equalTo(true);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -78,11 +78,11 @@ public class MainActivity extends BaseActivity {
                         list.add(issue.getValue(Hotels.class));
                     }
                     if(list.size() > 0) {
-                        binding.bestFoodView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+                        binding.BestHotelView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
                         RecyclerView.Adapter adapter = new BestHotelsAdapter(list);
-                        binding.bestFoodView.setAdapter(adapter);
+                        binding.BestHotelView.setAdapter(adapter);
                     }
-                    binding.progressBarBestFood.setVisibility(View.GONE);
+                    binding.progressBarBestHotel.setVisibility(View.GONE);
                 }
             }
 

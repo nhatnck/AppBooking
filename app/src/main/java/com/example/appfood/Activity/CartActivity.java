@@ -113,8 +113,6 @@ public class CartActivity extends BaseActivity {
         double itemTotal = Math.round(managmentCart.getTotalFee()*100)/100;
 
         binding.txtTotalFee.setText("$" +itemTotal);
-        binding.txtTax.setText("$" +tax);
-        binding.txtDelivery.setText("$" +delivery);
         binding.txtTotalCart.setText("$" +total);
 
     }

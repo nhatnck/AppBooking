@@ -92,6 +92,7 @@
                     android:ems="10"
                     android:inputType="text"
                     android:paddingLeft="16dp"
+                    android:padding="8dp"
                     android:text="Enter your code"
                     android:textColor="@color/blue_grey"
                     android:textColorHint="@color/blue_grey"

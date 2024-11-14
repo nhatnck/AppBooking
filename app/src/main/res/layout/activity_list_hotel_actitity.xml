@@ -49,7 +49,7 @@
                 android:layout_height="match_parent">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/foodListView"
+                    android:id="@+id/foodHotelView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
