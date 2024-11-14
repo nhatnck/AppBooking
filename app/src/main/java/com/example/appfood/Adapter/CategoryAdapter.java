@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.appfood.Activity.ListFoodActitity;
+import com.example.appfood.Activity.ListHotelActitity;
 import com.example.appfood.Domain.Category;
 import com.example.appfood.R;
 
@@ -79,7 +79,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
                 .into(holder.pic);
 
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, ListFoodActitity.class);
+            Intent intent = new Intent(context, ListHotelActitity.class);
             intent.putExtra("CategoryId", items.get(position).getId());
             intent.putExtra("CategoryName", items.get(position).getName());
             context.startActivity(intent);

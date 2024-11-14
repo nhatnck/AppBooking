@@ -96,6 +96,7 @@ public class ManagmentCart {
             Toast.makeText(context, "Item not found in cart", Toast.LENGTH_SHORT).show();
         }
     }
+
     public Double getTotalFee(){
         ArrayList<Hotels> listItem=getListCart();
         double fee=0;

@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 import com.example.appfood.Adapter.CartAdapter;
 import com.example.appfood.Domain.Hotels;
 import com.example.appfood.Domain.Order;
-import com.example.appfood.Helper.ChangeNumberItemsListener;
 import com.example.appfood.Helper.ManagmentCart;
 import com.example.appfood.R;
 import com.example.appfood.databinding.ActivityCartBinding;
