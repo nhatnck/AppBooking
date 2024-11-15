@@ -18,6 +18,7 @@ import com.example.appfood.Domain.Hotels;
 import com.example.appfood.Domain.Location;
 import com.example.appfood.Domain.Price;
 import com.example.appfood.Domain.Time;
+import com.example.appfood.Activity.HistoryActivity;
 import com.example.appfood.R;
 import com.example.appfood.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,12 +45,19 @@ public class MainActivity extends BaseActivity {
         initBestHotel();
         initCategory();
         setVariable();
+        changeScreenHistory();
     }
 
+    private void changeScreenHistory() {
+        binding.btnHistory.setOnClickListener(v -> {
+
+            startActivity(new Intent(MainActivity.this, HistoryActivity.class));
+        });
+    }
     private void setVariable() {
         binding.btnLogout.setOnClickListener(v -> {
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(MainActivity.this, SignInActivity.class));
+//            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(MainActivity.this, SignInNewActivity.class));
         });
 
         binding.btnSearch.setOnClickListener(v -> {

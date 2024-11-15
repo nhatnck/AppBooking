@@ -56,9 +56,9 @@ public class ListHotelActitity extends BaseActivity {
                         list.add(issue.getValue(Hotels.class));
                     }
                     if(list.size() > 0) {
-                        binding.foodHotelView.setLayoutManager(new GridLayoutManager(ListHotelActitity.this, 2));
+                        binding.hotelListView.setLayoutManager(new GridLayoutManager(ListHotelActitity.this, 2));
                         adapterListHotel = new HotelListAdapter(list);
-                        binding.foodHotelView.setAdapter(adapterListHotel);
+                        binding.hotelListView.setAdapter(adapterListHotel);
                     }
                     binding.progressBar.setVisibility(View.GONE);
                 }

@@ -1,12 +1,10 @@
 package com.example.appfood.Activity;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.appfood.R;
@@ -17,14 +15,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 
-public class SignInActivity extends BaseActivity {
+public class SignInNewActivity extends BaseActivity {
     ActivitySignInBinding binding;
     private static final int RC_SIGN_IN = 9001;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.activity_sign_in_new);
         int status = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
         if (status != ConnectionResult.SUCCESS) {
             // Google Play Services không có sẵn, xử lý tình huống này
@@ -33,7 +31,6 @@ public class SignInActivity extends BaseActivity {
 
         setVariable();
         changeSreenSignUp();
-        Toast.makeText(this, "DAY DAY", Toast.LENGTH_SHORT).show();
     }
     private void setVariable() {
         Toast.makeText(this, "DAY DAY 1111", Toast.LENGTH_SHORT).show();
@@ -41,24 +38,24 @@ public class SignInActivity extends BaseActivity {
         binding.btnSignIn.setOnClickListener(v -> {
             Toast.makeText(this, "DAY DAY 22222", Toast.LENGTH_SHORT).show();
 
-                String email = binding.emailEdt.getText().toString();
-                String password= binding.passwordEdt.getText().toString();
-               Log.d("THISSS", "" + email + password);
-
-                if(!email.isEmpty() && !password.isEmpty()) {
-                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(SignInActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                startActivity(new Intent(SignInActivity.this, MainActivity.class));
-                            }else {
-                                Toast.makeText(SignInActivity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                }else {
-                    Toast.makeText(SignInActivity.this, "Please fill email and password", Toast.LENGTH_SHORT).show();
-                }
+//            String email = binding.emailEdt.getText().toString();
+//            String password= binding.passwordEdt.getText().toString();
+//            Log.d("THISSS", "ddddd " + email + password);
+//
+//            if(!email.isEmpty() && !password.isEmpty()) {
+//                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(SignInNewActivity.this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            startActivity(new Intent(SignInNewActivity.this, MainActivity.class));
+//                        }else {
+//                            Toast.makeText(SignInNewActivity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
+//            }else {
+//                Toast.makeText(SignInNewActivity.this, "Please fill email and password", Toast.LENGTH_SHORT).show();
+//            }
         });
 
     }
@@ -66,8 +63,8 @@ public class SignInActivity extends BaseActivity {
     private void changeSreenSignUp() {
         binding.txtSignUp.setOnClickListener(v -> {
             Log.d("TESSST ", "LOGIN");
-            startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
-            Toast.makeText(SignInActivity.this, "OK", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(SignInNewActivity.this, SignUpActivity.class));
+            Toast.makeText(SignInNewActivity.this, "OK", Toast.LENGTH_LONG).show();
         });
     }
 }

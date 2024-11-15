@@ -125,69 +125,31 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/grey_background">
 
+
                 <TextView
                     android:id="@+id/textView13"
                     style="@style/textStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="32dp"
                     android:text="SubTotal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/textView14"
-                    style="@style/textStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Delivery"
-                    app:layout_constraintStart_toStartOf="@+id/textView13"
-                    app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-                <TextView
-                    android:id="@+id/textView15"
-                    style="@style/textStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Total Tax"
-                    app:layout_constraintStart_toStartOf="@+id/textView14"
-                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
                     android:id="@+id/txtTotalFee"
                     style="@style/textStyle"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="16dp"
                     android:text="$-"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/txtTotalCart" />
 
                 <TextView
-                    android:id="@+id/txtDelivery"
-                    style="@style/textStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="$-"
-                    app:layout_constraintEnd_toEndOf="@+id/txtTotalFee"
-                    app:layout_constraintTop_toBottomOf="@+id/txtTotalFee" />
-
-                <TextView
-                    android:id="@+id/txtTax"
-                    style="@style/textStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="$-"
-                    app:layout_constraintEnd_toEndOf="@+id/txtDelivery"
-                    app:layout_constraintTop_toBottomOf="@+id/txtDelivery" />
-
-                <View
                     android:id="@+id/view4"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
@@ -196,8 +158,7 @@
                     android:layout_marginEnd="16dp"
                     android:background="#ABABAB"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
                     android:id="@+id/textView24"
@@ -206,8 +167,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Total:"
-                    app:layout_constraintStart_toStartOf="@+id/view4"
-                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
+                    app:layout_constraintStart_toStartOf="@+id/view4" />
 
                 <TextView
                     android:id="@+id/txtTotalCart"
